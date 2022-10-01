@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Hello software bastards!</title>
+    <script src="validate-object-script.js"></script>
+</head>
+<style>
+    .m-t-20 {
+        margin-top: 20px;
+    }
+</style>
+<body>
+
+    <div class="m-t-20">
+        <div id="schemaDisplay"></div>
+    </div>
+    
+    <div class="m-t-20">
+        <div id="inputObject"></div>
+    </div>
+    
+    <div class="m-t-20">
+        <div id="result"></div>
+    </div>
+</body>
+
+<!-- Case one -->
+<script>
+    // Schema
+    const carSchema = {
+        brand: 'string',
+        type: 'string',
+        milage: 'number',
+        extras: 'array',
+    };
+    // Object 1 validates true
+    const carObjectOne = {
+        brand: 'Mazda',
+        type: 'MX5 NB 1.8',
+        milage: 199999.99,
+        extras: [
+            '2001 Special Edition'
+        ],
+    };
+    // Object 2 validates false
+    const carObjectTwo = {
+        brand: 'BMW',
+        type: '335',
+        milage: '100000', // < No number
+        extras: [
+            'LCI',
+            'KW Coilovers',
+        ],
+    };
+    displaySchemaAndInputObject(carSchema, carObjectOne, 1);
+    validateObjectBasedOnPredefinedSchema(carSchema, carObjectOne, 1);
+    displaySchemaAndInputObject(carSchema, carObjectTwo, 2);
+    validateObjectBasedOnPredefinedSchema(carSchema, carObjectTwo, 2);
+</script>
+</html>

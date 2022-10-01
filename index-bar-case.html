@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Hello software bastards!</title>
+    <script src="validate-object-script.js"></script>
+</head>
+<style>
+    .m-t-20 {
+        margin-top: 20px;
+    }
+</style>
+<body>
+
+    <div class="m-t-20">
+        <div id="schemaDisplay"></div>
+    </div>
+    
+    <div class="m-t-20">
+        <div id="inputObject"></div>
+    </div>
+    
+    <div class="m-t-20">
+        <div id="result"></div>
+    </div>
+</body>
+
+<!-- Case one -->
+<script>
+    // Schema
+    const barSchema = {
+        name: 'string',
+        address: 'string',
+        drinks: 'object',
+    };
+    // Object 1 validates true
+    const barObjectOne = {
+        name: 'Jimmys drinks',
+        address: 'Somewhere over the rainbow',
+        drinks: {
+            beer: ['Straffe Hendrik', 'Rochefort', 'St Bernard'],
+        },
+    };
+    // Object 2 validates false
+    const barObjectTwo = {
+        name: 'Sjonnies',
+        address: 'Centrum 001',
+        drinks: [ // < No object
+            'Heineken', 
+        ]
+    };
+    displaySchemaAndInputObject(barSchema, barObjectOne, 1);
+    validateObjectBasedOnPredefinedSchema(barSchema, barObjectOne, 1);
+    displaySchemaAndInputObject(barSchema, barObjectTwo, 2);
+    validateObjectBasedOnPredefinedSchema(barSchema, barObjectTwo, 2);
+</script>
+</html>

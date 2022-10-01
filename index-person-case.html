@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Hello software bastards!</title>
+    <script src="validate-object-script.js"></script>
+</head>
+<style>
+    .m-t-20 {
+        margin-top: 20px;
+    }
+</style>
+<body>
+
+    <div class="m-t-20">
+        <div id="schemaDisplay"></div>
+    </div>
+    
+    <div class="m-t-20">
+        <div id="inputObject"></div>
+    </div>
+    
+    <div class="m-t-20">
+        <div id="result"></div>
+    </div>
+    
+    <div class="m-t-20">
+        <div id="extraScenarioResult"></div>
+    </div>
+</body>
+
+<!-- Person case -->
+<script>
+    // Schema
+    const personSchema = {
+        name: 'string',
+        age: 'number',
+        siblings: 'array',
+        metaData: 'object',
+        active: 'boolean',
+    };
+    // Object 1 validates true
+    const personObjectOne = {
+        name: 'James',
+        age: 25,
+        siblings: ['Johnnathan'],
+        metaData: {},
+        active: true,
+    };
+    // Object 2 validates false
+    const personObjectTwo = {
+        name: 'James',
+        age: 25,
+        active: true,
+    };
+    // Object 3 validates false/true based on the requirements of the extra scenario
+    const personObjectThree = {
+        name: 'Jimmy Hendriks',
+        age: 25,
+        siblings: ['Johnnathan'],
+        metaData: {},
+        active: true,
+        extraProperty: 'I heard about this song',
+    };
+    displaySchemaAndInputObject(personSchema, personObjectOne, 1);
+    validateObjectBasedOnPredefinedSchema(personSchema, personObjectOne, 1);
+    displaySchemaAndInputObject(personSchema, personObjectTwo, 2);
+    validateObjectBasedOnPredefinedSchema(personSchema, personObjectTwo, 2);
+    extraScenario(personSchema, personObjectThree);
+</script>
+</html>
